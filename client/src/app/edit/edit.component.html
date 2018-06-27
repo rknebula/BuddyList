@@ -1,0 +1,9 @@
+<div id="container">
+    <p><a [routerLink]="['/../']">Home</a> | <a [routerLink]="['/../users']">All Users</a> | <a href="/logout">Logout</a></p>
+
+    <h1>Edit About?</h1>
+    <form (submit)="edit_about()" #form="ngForm">
+        <textarea name="about" [(ngModel)]="user.about" #about="ngModel" required></textarea>
+        <button type="submit" [disabled]="!form.dirty || !form.valid">Edit</button>
+    </form>
+</div>

@@ -1,0 +1,24 @@
+<div id="container">
+    <p><a [routerLink]="['/../']">Home</a> | <a [routerLink]="['/../users']">All Users</a> | <a href="/logout">Logout</a></p>
+
+<ng-container *ngIf="profile._id == user._id">
+    <h1>This is your page.</h1>
+    <p>What were you expecting to see?</p>
+</ng-container>
+
+<ng-container *ngIf="profile._id != user._id">
+    <h1>{{ profile.username }}</h1>
+    <p>{{ profile.about }}</p>
+    <p *ngIf="compare[0] == (-1) && compare[1] == (-1)"><button type="button" (click)="pending_friend()">Request Friendship</button></p>
+    <p *ngIf="compare[0] != (-1) && compare[1] == (-1)"><button type="button" disabled>Friendship Requested</button></p>
+    <p *ngIf="compare[0] == (-1) && compare[1] != (-1)"><button type="button" (click)="add_friend()">Accept Request</button></p>
+
+    <div>
+        <h2>Friends</h2>
+        <p *ngIf="profile.mutuals.length == 0">{{ profile.username }} has no friends. :(</p>
+        <ng-container *ngFor="let friend of profile.mutuals">
+            <p><a [routerLink]="['/../user', friend.id]">{{ friend.username }}</a></p>
+        </ng-container>
+    </div>
+</ng-container>
+</div>

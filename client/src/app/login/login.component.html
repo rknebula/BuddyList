@@ -1,0 +1,6 @@
+<h1>Login</h1>
+
+<form (submit)="logging_in()" #form="ngForm">
+    <input type="text" name="username" [(ngModel)]="user.username" #username="ngModel" required>
+    <button type="submit" [disabled]="!form.valid">Login</button>
+</form>

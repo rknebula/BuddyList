@@ -1,0 +1,24 @@
+<div id="container">
+    <p><a [routerLink]="['']">Home</a> | <a [routerLink]="['users']">All Users</a> | <a href="/logout">Logout</a></p>
+
+    <h1>Welcome {{ user.username }}!</h1>
+    <p>{{ user.about }} <sup><a [routerLink]="['edit']">Edit description?</a></sup></p>
+
+    <div>
+        <h2>Your Friends:</h2>
+        <p *ngIf="user.mutuals.length == 0">You have no friends. :(
+            <span id="secret">(Pssst! Take a look at the <a [routerLink]="['users']">user list</a>!)</span>
+        </p>
+        <ng-container *ngFor="let friend of user.mutuals">
+            <p><a [routerLink]="['user', friend._id]">{{ friend.username }}</a> | Remove</p>
+        </ng-container>
+    </div>
+
+    <div>
+        <h2>Accept Friendship Requests:</h2>
+        <p *ngIf="user.pendings.length == 0">No one wants to be friends with you. :(</p>
+        <ng-container *ngFor="let friend of user.pendings">
+            <p><a [routerLink]="['user', friend._id]">{{ friend.username }}</a> <button (click)="add_friend(friend._id)">Accept</button></p>
+        </ng-container>
+    </div>
+</div>

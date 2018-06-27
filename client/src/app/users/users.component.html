@@ -1,0 +1,13 @@
+<div id="container">
+    <p><a [routerLink]="['/../']">Home</a> | <a [routerLink]="['/../users']">All Users</a> | <a href="/logout">Logout</a></p>
+
+    <h1>All Users:</h1>
+
+    <div>
+        <ng-container *ngFor="let user of userList">
+            <p>
+                <a [routerLink]="['../user', user._id]">{{ user.username }}</a>
+            </p>
+        </ng-container>
+    </div>
+</div>
